@@ -1,0 +1,25 @@
+plugins {
+    id 'java'
+}
+
+
+repositories {
+    maven{
+        url 'https://repo.mave.apache.org/maven2'
+    }
+}
+
+dependencies {
+    implementation 'com.intuit.karate:karate-import:0.4.3.3'
+    implementation 'com.intuit.karate:karate-core:1.4.0.RC3'
+    testImplementation group: 'com.intuit.karate', name: 'karate-junit5', version: '1.4.1.RC3'
+    implementation group: 'com.intuit.karate', name: 'karate-core', version: '1.4.1.RC3'
+
+}
+
+test {
+    useJUnitPlatform()
+    systemProperty "karate.options", System.properties.getProperty("karate.options")
+    systemProperty "karate.env", System.properties.getProperty("karate.env")
+    outputs.upToDateWhen { false }
+}
